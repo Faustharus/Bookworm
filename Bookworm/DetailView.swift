@@ -19,18 +19,37 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             ZStack(alignment: .bottomTrailing) {
-                Image(book.genre)
-                    .resizable()
-                    .scaledToFit()
+                if book.genre == "Uncatalogued" {
+                    ContentUnavailableView("", systemImage: "questionmark")
+                        .frame(height: 230)
+                } else {
+                    Image(book.genre)
+                        .resizable()
+                        .scaledToFit()
+                }
                 
-                Text(book.genre.uppercased())
-                    .font(.caption)
-                    .fontWeight(.black)
-                    .padding(8)
-                    .foregroundStyle(.black)
-                    .background(.white)
-                    .clipShape(.rect(cornerRadius: 10))
-                    .offset(x: -5, y: -5)
+                HStack {
+                    Text(book.date.formatted(date: .numeric, time: .omitted))
+                        .font(.caption)
+                        .fontWeight(.black)
+                        .padding(8)
+                        .foregroundStyle(.black)
+                        .background(.white)
+                        .clipShape(.rect(cornerRadius: 10))
+                        .offset(x: -5, y: -5)
+                    
+                    Spacer()
+                    
+                    Text(book.genre.uppercased())
+                        .font(.caption)
+                        .fontWeight(.black)
+                        .padding(8)
+                        .foregroundStyle(.black)
+                        .background(.white)
+                        .clipShape(.rect(cornerRadius: 10))
+                        .offset(x: -5, y: -5)
+                }
+                .padding(.horizontal, 5)
             }
             
             Text(book.author)
