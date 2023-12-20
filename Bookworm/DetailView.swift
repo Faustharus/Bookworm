@@ -21,7 +21,7 @@ struct DetailView: View {
             ZStack(alignment: .bottomTrailing) {
                 if book.genre == "Uncatalogued" {
                     ContentUnavailableView("", systemImage: "questionmark")
-                        .frame(height: 230)
+                        .frame(height: 235)
                 } else {
                     Image(book.genre)
                         .resizable()
